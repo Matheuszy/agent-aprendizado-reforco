@@ -1,13 +1,28 @@
 from fastapi import APIRouter
-from app.schemas.agent import HyperparametersRequest, SimulationResponse
-from app.services.rl_service import run_q_learning
+from api.models.atributes import atributes
+from src.agent_aprendizado_reforco.Taxi_v4 import train_and_eval_taxi
+from src.agent_aprendizado_reforco.FrozenLake_v1 import train_and_eval_frozen
 
-router = APIRouter(prefix="/simulations", tags=["Simulações RL"])
+router = APIRouter(prefix="/api", tags=["Simulações RL"])
 
-@router.post("/taxi", response_model=SimulationResponse)
-def train_and_eval_taxi(params: HyperparametersRequest):
-    return run_q_learning("Taxi-v3", params)
+@router.post("/taxi")
+def simulate_taxi(params: atributes):
+    return train_and_eval_taxi(
+        alpha=params.alpha,
+        gamma=params.gamma,
+        epsilon=params.epsilon,
+        epsilon_decay=params.epsilon_decay,
+        epsilon_min=params.epsilon_min,
+        num_episodes=params.num_episodes
+    )
 
-@router.post("/frozen-lake", response_model=SimulationResponse)
-def train_and_eval_frozen(params: HyperparametersRequest):
-    return run_q_learning("FrozenLake-v1", params)
+@router.post("/frozen-lake")
+def simulate_frozen(params: atributes):
+    return train_and_eval_frozen(
+        alpha=params.alpha,
+        gamma=params.gamma,
+        epsilon=params.epsilon,
+        epsilon_decay=params.epsilon_decay,
+        epsilon_min=params.epsilon_min,
+        num_episodes=params.num_episodes
+    )
