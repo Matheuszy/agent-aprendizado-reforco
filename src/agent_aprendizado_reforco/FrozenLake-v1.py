@@ -31,6 +31,9 @@ def train_and_eval_frozen(alpha: float, gamma: float, epsilon: float,
         if current_epsilon > epsilon_min:
             current_epsilon *= epsilon_decay
 
+
+    last_path = []
+
     # Avaliação
     test_episodes = 1000
     successes = 0
@@ -41,7 +44,7 @@ def train_and_eval_frozen(alpha: float, gamma: float, epsilon: float,
         while not (done or truncated):
             action = np.argmax(q_table[state])
             state, reward, done, truncated, _ = env.step(action)
-            if done and reward == 20:
+            if done and reward == 1.0:
                 successes += 1
 
     env.close()
@@ -49,5 +52,6 @@ def train_and_eval_frozen(alpha: float, gamma: float, epsilon: float,
     return {
         "successes": successes,
         "total_tests": test_episodes,
-        "success_rate": (successes / test_episodes) * 100
+        "success_rate": (successes / test_episodes) * 100,
+        "path": last_path
     }

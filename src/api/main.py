@@ -1,6 +1,15 @@
 from fastapi import FastAPI
-from app.routes.agent import router as agent_router
+from fastapi.middleware.cors import CORSMiddleware
+from api.routes import agent_router
 
-app = FastAPI(title="RL Multi-Agent API", version="1.0.0")
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(agent_router)
