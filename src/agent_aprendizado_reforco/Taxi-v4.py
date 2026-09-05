@@ -1,8 +1,8 @@
 import numpy as np
 import gymnasium as gym
 
-# Inicializar o ambiente FrozenLake
-# O agente precisa atravessar um lago congelado sem cair nos buracos
+# Inicializar o ambiente Taxi
+# O agente precisa levar seu passageiro ao destino 
 env = gym.make("Taxi-v4")
 
 while True:
