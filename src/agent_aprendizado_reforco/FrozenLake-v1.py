@@ -1,8 +1,8 @@
 import numpy as np
 import gymnasium as gym
 
-def train_and_eval_taxi(alpha: float, gamma: float, epsilon: float, 
-                        epsilon_decay: float, epsilon_min: float, num_episodes: int):
+def train_and_eval_frozen(alpha: float, gamma: float, epsilon: float, 
+                      epsilon_decay: float, epsilon_min: float, num_episodes: int):
     
     env = gym.make("FrozenLake-v1", is_slippery=True)
     q_table = np.zeros((env.observation_space.n, env.action_space.n))
