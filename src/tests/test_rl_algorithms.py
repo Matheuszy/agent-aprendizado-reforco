@@ -3,7 +3,6 @@ from agent_aprendizado_reforco.Taxi_v4 import train_and_eval_taxi
 from agent_aprendizado_reforco.FrozenLake_v1 import train_and_eval_frozen
 
 def test_taxi_training_returns_correct_structure():
-    # Roda pouquíssimos episódios apenas para validar a execução do algoritmo
     result = train_and_eval_taxi(
         alpha=0.1,
         gamma=0.9,
