@@ -103,3 +103,30 @@ cd frontend
 npm install
 npm run dev
 ```
+
+---
+
+## 🧪 Executando os Testes
+
+O projeto possui testes automatizados para validar a API e os algoritmos de RL:
+
+### Testes Disponíveis
+
+| Arquivo                  | Descrição                                   |
+|--------------------------|---------------------------------------------|
+| `test_api_routes.py`     | Testes dos endpoints da API REST            |
+| `test_rl_algorithms.py`  | Testes dos algoritmos de Q-Learning         |
+
+### Executando os Testes
+
+```bash
+# Executar todos os testes
+uv run pytest
+
+# Executar testes específicos
+uv run pytest src/tests/test_api_routes.py
+uv run pytest src/tests/test_rl_algorithms.py
+
+# Executar com verbose
+uv run pytest -v
+```
